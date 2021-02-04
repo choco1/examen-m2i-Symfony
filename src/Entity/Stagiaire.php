@@ -33,6 +33,7 @@ class Stagiaire
      * @Assert\NotBlank
      * @Assert\Length(min = 10,
      *                minMessage = "Votre numero de telephone doit faire au moin 10 chiffre !!!!")
+     * @AssertPhoneNumber
      */
     private $phone;
 

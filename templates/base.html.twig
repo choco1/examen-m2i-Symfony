@@ -37,8 +37,16 @@
                     <li class="nav-item mx-2">
                         <a class="nav-link text-danger" href="{{ path('add_competence') }}">Add une competence</a>
                     </li>
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                           <span class="text-primary" > Connectez avec ! : {{ app.user.username }} </span> , <a class="text-danger" href="{{ path('app_logout') }}">Se deconnecter</a>
+                        </div>
+
+                    {% else %}
+                        <a class="navbar-text text-danger ml-5" href="{{ path('app_login') }}">Se connecter</a>
+                    {% endif %}
                 </ul>
-                <a class="navbar-text text-danger ml-5" href="{{ path('app_login') }}">Se connecter</a>
             </div>
         </div>
     </nav>

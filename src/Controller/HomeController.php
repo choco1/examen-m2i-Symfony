@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function index(): Response
     {
@@ -55,7 +55,7 @@ class HomeController extends AbstractController
     /**
      * @param Request $request
      * @return Response
-     * @Route("/home/addStagiaire", name="add_stagiaire")
+     * @Route("/addStagiaire", name="add_stagiaire")
      */
     public function createStagiaire(Request $request): Response
     {

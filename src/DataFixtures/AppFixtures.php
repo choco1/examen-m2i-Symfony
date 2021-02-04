@@ -46,31 +46,27 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        for($i = 0; $i < 5; $i++){
+        for($j = 0; $j < 5; $j++){
             $competence = new Competence();
             $competence->setName($faker->title);
 
             $manager->persist($competence);
-            $this->addReference('competence-'.$i, $competence);
+            $this->addReference('competence-'.$j, $competence);
         }
 
 
-        for($i = 0; $i < 30; $i++){
+        for($n = 0; $n < 30; $n++){
             $stagiaire = new Stagiaire();
             $stagiaire->setName($faker->name);
             $stagiaire->setCreatedAt(new \DateTime());
             $stagiaire->setBirthday(null);
-            for($j = 0; $j <10; $j++){
-            $stagiaire->setPhone($faker->numberBetween(0, 9));
-            }
-            for($n = 0; $n <10; $n++){
-                $stagiaire->setPhone($faker->numberBetween(0, 4));
-            }
-            for($a = 0; $a <4; $n++){
+            $stagiaire->setPhone($faker->phoneNumber);
+            $stagiaire->setCodePostal($faker->numberBetween(round(0, 6)));
+            for($a = 0; $a <4; $a++){
                 $stagiaire->addCompetence($this->getReference('competence-'.rand(0, 3)));
             }
             $manager->persist($stagiaire);
-            $this->addReference('stagiaire-'.$i, $stagiaire);
+            $this->addReference('stagiaire-'.$n, $stagiaire);
 
             $manager->persist($stagiaire);
         }
