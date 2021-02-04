@@ -27,7 +27,7 @@ class HomeController extends AbstractController
     /**
      * @param Request $request
      * @return Response
-     * @Route("/home/addCompetence", name="add_competence")
+     * @Route("/addCompetence", name="add_competence")
      */
     public function createCompetence(Request $request): Response
     {
@@ -74,8 +74,27 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return   $this->render('home/createCompetence.html.twig',[
+        return   $this->render('home/createStagiaire.html.twig',[
             'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @return Response
+     * @Route("/home/allStagiaires", name="all_stagiaires")
+     */
+    public function listStagiaire(): Response
+    {
+
+        $repo = $this->getDoctrine()->getRepository(Stagiaire::class);
+        $stagiairesCompetence = $repo->selectCompetence();
+        $stagiaires = $repo->findAll();
+
+
+        return $this->render('home/allStagiaire.html.twig', [
+            'stagiaires' => $stagiaires,
+            'stagiairesCompetences' => $stagiairesCompetence
         ]);
     }
 

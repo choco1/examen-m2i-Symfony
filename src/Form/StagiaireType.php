@@ -31,10 +31,14 @@ class StagiaireType extends AbstractType
                     'placeholder' => "Date de création du stagiaire"
                 ]
             ])
-            ->add('birthday', DateType::class, [
-                'widget' => 'choice',
+            ->add('birthday',TextType::class, [
                 'attr' => [
-                    'placeholder' => "Date de l'anniversaire"
+                    'placeholder' => "Votre date de naissance"
+                ]
+            ])
+            ->add('codePostal',NumberType::class, [
+                'attr' => [
+                    'placeholder' => "Numéro de code postal"
                 ]
             ])
             ->add('competence', null, [
@@ -42,6 +46,7 @@ class StagiaireType extends AbstractType
                 'expanded' => true,
 
             ])
+
         ;
     }
 

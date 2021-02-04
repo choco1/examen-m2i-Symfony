@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+
+    <div class="container">
+        <h1 class="text-center mt-5 text-primary">Bienvenue chez Nous!!!!!</h1>
+
+        <h3>Inscrivez vous !!</h3>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <button type="submit" class=" px-5 btn btn-primary mb-5 ">S'inscrire</button>
+        {{ form_end(form) }}
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Stagiaire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method Stagiaire|null find($id, $lockMode = null, $lockVersion = null)
  * @method Stagiaire|null findOneBy(array $criteria, array $orderBy = null)
@@ -18,6 +19,20 @@ class StagiaireRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Stagiaire::class);
     }
+
+
+    public function selectCompetence(){
+
+        $qb = $this->createQueryBuilder('s')
+            ->innerJoin('s.competence', 'sc');
+        //->groupBy('p.id');
+
+        //dump($qb->getQuery()->getResult());
+        return $qb->getQuery()->getResult();
+
+    }
+
+
 
     // /**
     //  * @return Stagiaire[] Returns an array of Stagiaire objects

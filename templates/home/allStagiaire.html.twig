@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            {% for stagiaire in stagiaires %}
+                <div class="col-lg-3">
+                    <h3>{{ stagiaire.name }}</h3>
+                    <p>{{ stagiaire.phone }}</p>
+                    <p>{{ stagiaire.birthday }}</p>
+                            <p>Les competences sont :</p>
+                            {% for competence in stagiaire.competence %}
+                                <p>
+                                    {{ competence.name }}
+                                </p>
+                            {% endfor %}
+                    <p>{{ stagiaire.createdAt |date("m/d/Y")}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

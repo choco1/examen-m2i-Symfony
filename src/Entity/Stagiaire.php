@@ -6,6 +6,7 @@ use App\Repository\StagiaireRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StagiaireRepository::class)
@@ -21,21 +22,33 @@ class Stagiaire
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min = 3,
+     *                minMessage = "Votre nom doit faire au moin 3 carractères !!!!")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(min = 10,
+     *                minMessage = "Votre numero de telephone doit faire au moin 10 chiffre !!!!")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\DateTime
+     * @var string A "Y-m-d " formatted value
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Length(min = 5,
+     *                minMessage = "Votre date d'anniversaire doit etre affichier comme : J/M/AA !!!!")
      */
     private $birthday;
 
@@ -43,6 +56,14 @@ class Stagiaire
      * @ORM\ManyToMany(targetEntity=Competence::class, inversedBy="stagiaires")
      */
     private $competence;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\Locale(
+     *     canonicalize = true)
+     */
+    private $codePostal;
 
     public function __construct()
     {
@@ -125,4 +146,17 @@ class Stagiaire
 
         return $this;
     }
+
+    public function getCodePostal(): ?int
+    {
+        return $this->codePostal;
+    }
+
+    public function setCodePostal(int $codePostal): self
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
 }
